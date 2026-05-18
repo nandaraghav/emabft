@@ -1,5 +1,35 @@
-const img = (id, w=600, h=800) => `https://picsum.photos/seed/nift${id}/${w}/${h}`;
-const img2 = (id, w=600, h=800) => `https://picsum.photos/seed/scrap${id}/${w}/${h}`;
+const unsplashIds = [
+  "photo-1582485565167-75055e5e6b5b", // 1. Denim
+  "photo-1544816155-12df9643f363", // 2. Zippers
+  "photo-1530587191325-3db32d826c18", // 3. Tan Leather
+  "photo-1528459801416-a9e53bbf4e17", // 4. Muslin
+  "photo-1563245372-f21724e3856d", // 5. Silk Swatches
+  "photo-1590534247854-e97d5e3feef6", // 6. Hardware
+  "photo-1506806732259-39c2d0268443", // 7. Thread
+  "photo-1618220179428-22790b461013", // 8. Chanderi Silk
+  "photo-1513542789411-b6a5d4f31634", // 9. Canvas
+  "photo-1516962215378-7fa2e137ae93", // 10. Press Tool
+  "photo-1584308666744-24d5c474f2ae", // 11. Lace Trims
+  "photo-1598971861713-54ad16a7e72e", // 12. Organic Cotton
+  "photo-1586075010923-2dd45e9b2d4f", // 13. Pattern Paper
+  "photo-1603561591411-07134e71a2a9", // 14. Buttons
+  "photo-1606744824163-985d376605aa", // 15. Printed Crepe
+  "photo-1508962914676-134849a727f0", // 16. Suede
+  "photo-1621939514649-280e2ee37f60", // 17. Webbing
+  "photo-1582281486745-f09c6dc67d02", // 18. Fusing
+  "photo-1549490349-8643362247b5", // 19. Wool Felt
+  "photo-1617038260897-41a1f14a8ca0", // 20. Buckles
+];
+
+const img = (id, w=600, h=800) => {
+  const cleanId = unsplashIds[(id - 1) % unsplashIds.length];
+  return `https://images.unsplash.com/${cleanId}?auto=format&fit=crop&w=${w}&h=${h}&q=80`;
+};
+
+const img2 = (id, w=600, h=800) => {
+  const cleanId = unsplashIds[id % unsplashIds.length];
+  return `https://images.unsplash.com/${cleanId}?auto=format&fit=crop&w=${w}&h=${h}&q=80`;
+};
 
 export const products = [
   { id:'p1', title:'Assorted Denim Scraps', material:'Denim', seller:'Aarav - FD 3rd Year', sellerId:'user-1', sellerType:'Student', price:50, originalPrice:150, images:[img(1), img2(1)], size:'Various small cuts', gsm:340, composition:'98% Cotton', texture:'Raw selvedge and washed pieces', dimensions:'Mostly 10x10cm to 30x20cm', category:'fabric', tags:['Zero Waste Project'], sustainability:'Leftover from my final term garment construction assignment.', featured:true, createdAt:'2026-05-10' },
