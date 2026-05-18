@@ -33,7 +33,7 @@ export default function ListScrapPage() {
       sellerType: 'Creator',
       price: parseInt(form.price) || 0,
       originalPrice: parseInt(form.price) ? Math.round(parseInt(form.price) * 1.3) : 0,
-      images: images.length > 0 ? images.map(i => i.url) : ['https://images.unsplash.com/photo-1558171813-4c088753af8f?w=600&h=800&fit=crop'],
+      images: images.length > 0 ? images.map(i => i.url) : ['/images/upload_placeholder.png'],
       size: `${form.length || '?'}cm × ${form.width || '?'}cm`,
       gsm: 150,
       composition: form.material,
