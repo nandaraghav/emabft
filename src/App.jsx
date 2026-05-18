@@ -56,7 +56,7 @@ export default function App() {
         {!isLoginPage && <BottomNav />}
         <Toast />
       </div>
-      {!isLoginPage && <InstallPrompt />}
+      <InstallPrompt />
     </div>
   );
 }
