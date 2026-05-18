@@ -11,10 +11,10 @@ function saveToStorage(key, value) {
 }
 
 export function AppProvider({ children }) {
-  const [listings, setListings] = useState(() => loadFromStorage('stitched_listings_v4', defaultProducts));
-  const [savedScraps, setSavedScraps] = useState(() => loadFromStorage('stitched_saved_v4', []));
-  const [cart, setCart] = useState(() => loadFromStorage('stitched_cart_v4', []));
-  const [recentSearches, setRecentSearches] = useState(() => loadFromStorage('stitched_searches_v4', []));
+  const [listings, setListings] = useState(() => loadFromStorage('stitched_listings_v5', defaultProducts));
+  const [savedScraps, setSavedScraps] = useState(() => loadFromStorage('stitched_saved_v5', []));
+  const [cart, setCart] = useState(() => loadFromStorage('stitched_cart_v5', []));
+  const [recentSearches, setRecentSearches] = useState(() => loadFromStorage('stitched_searches_v5', []));
   const [toasts, setToasts] = useState([]);
 
   const showToast = useCallback((message, type = 'success') => {
@@ -25,20 +25,20 @@ export function AppProvider({ children }) {
 
   const addListing = useCallback((listing) => {
     const newListing = { ...listing, id: 'p-' + Date.now(), createdAt: new Date().toISOString().slice(0, 10), featured: false };
-    setListings(prev => { const next = [newListing, ...prev]; saveToStorage('stitched_listings_v4', next); return next; });
+    setListings(prev => { const next = [newListing, ...prev]; saveToStorage('stitched_listings_v5', next); return next; });
     showToast('Listing published successfully!');
     return newListing;
   }, [showToast]);
 
   const deleteListing = useCallback((id) => {
-    setListings(prev => { const next = prev.filter(p => p.id !== id); saveToStorage('stitched_listings_v4', next); return next; });
+    setListings(prev => { const next = prev.filter(p => p.id !== id); saveToStorage('stitched_listings_v5', next); return next; });
     showToast('Listing deleted', 'info');
   }, [showToast]);
 
   const toggleFeature = useCallback((id) => {
     setListings(prev => {
       const next = prev.map(p => p.id === id ? { ...p, featured: !p.featured } : p);
-      saveToStorage('stitched_listings_v4', next);
+      saveToStorage('stitched_listings_v5', next);
       return next;
     });
   }, []);
@@ -46,7 +46,7 @@ export function AppProvider({ children }) {
   const toggleSave = useCallback((productId) => {
     setSavedScraps(prev => {
       const next = prev.includes(productId) ? prev.filter(x => x !== productId) : [...prev, productId];
-      saveToStorage('stitched_saved_v4', next);
+      saveToStorage('stitched_saved_v5', next);
       return next;
     });
   }, []);
@@ -57,7 +57,7 @@ export function AppProvider({ children }) {
     setCart(prev => {
       if (prev.includes(productId)) return prev;
       const next = [...prev, productId];
-      saveToStorage('stitched_cart_v4', next);
+      saveToStorage('stitched_cart_v5', next);
       return next;
     });
     showToast('Reserved successfully!');
@@ -67,14 +67,14 @@ export function AppProvider({ children }) {
     if (!query.trim()) return;
     setRecentSearches(prev => {
       const next = [query, ...prev.filter(s => s !== query)].slice(0, 8);
-      saveToStorage('stitched_searches_v4', next);
+      saveToStorage('stitched_searches_v5', next);
       return next;
     });
   }, []);
 
   const clearRecentSearches = useCallback(() => {
     setRecentSearches([]);
-    saveToStorage('stitched_searches_v4', []);
+    saveToStorage('stitched_searches_v5', []);
   }, []);
 
   return (
