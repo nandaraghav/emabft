@@ -25,11 +25,10 @@
   --shadow-nav: 0 -4px 24px rgba(92, 74, 58, 0.06);
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  -webkit-tap-highlight-color: transparent;
+@layer base {
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
 }
 
 html {
