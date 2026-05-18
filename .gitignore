@@ -11,6 +11,11 @@ node_modules/
 dist/
 dist-ssr/
 *.local
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 
 # Editor directories and files
 .vscode/*
@@ -22,15 +27,6 @@ dist-ssr/
 *.njsproj
 *.sln
 *.sw?
-
-# Stitched specific
-stitched/node_modules/
-stitched/dist/
-stitched/.env
-stitched/.env.local
-stitched/.env.development.local
-stitched/.env.test.local
-stitched/.env.production.local
 
 # Gemini specific
 .gemini/
